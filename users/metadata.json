@@ -1,0 +1,17 @@
+{
+  "name": "users",
+  "version": "0.1.0",
+  "author": "Hailu Ju",
+  "summary": "Puppet module for users",
+  "license": "Apache 2.0",
+  "source": "https://github.com/bloodhero/puppet-users",
+  "issues_url": "https://github.com/bloodhero/puppet-users/issues",
+  "project_page": "http://www.juhailu.com",
+  "dependencies": [
+    {
+      "version_range": ">= 3.2.1",
+      "name": "puppetlabs-stdlib"
+    }
+  ]
+}
+

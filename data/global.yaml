@@ -1,0 +1,17 @@
+---
+profiles::base::hosts:
+  master.example.com:
+    ip: 192.168.10.100
+  foreman.example.com:
+    ip: 192.168.10.101
+  mq.example.com:
+    ip: 192.168.10.102
+  yum.example.com:
+    ip: 192.168.10.254
+profiles::master::foreman_uri: foreman.example.com
+profiles::master::mq_uri: mq.example.com
+profiles::master::master_uri: master.example.com
+profiles::master::share_cert: mcollective-servers
+profiles::master::mq_mcollective_password: so7203k
+profiles::master::mq_admin_password: 1487ghhls
+profiles::base::ntp_server: master.example.com

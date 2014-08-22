@@ -1,0 +1,39 @@
+# RabbitMQ connector settings:
+direct_addressing = 1
+connector = rabbitmq
+plugin.rabbitmq.vhost = /mcollective
+plugin.rabbitmq.pool.size = 1
+plugin.rabbitmq.pool.1.host = <%= @options['mq_uri'] %>
+plugin.rabbitmq.pool.1.port = 61613
+plugin.rabbitmq.pool.1.user = mcollective
+plugin.rabbitmq.pool.1.password = <%= @options['mcollective_password'] %>
+
+#plugin.rabbitmq.pool.2.host = rabbit2
+#plugin.rabbitmq.pool.2.port = 61613
+#plugin.rabbitmq.pool.2.user = mcollective
+#plugin.rabbitmq.pool.2.password = changeme
+
+# PSK plugin settings:
+plugin.psk = j9q8kx7fnuied9e
+
+# Interface settings:
+default_discovery_method = mc
+direct_addressing_threshold = 10
+ttl = 60
+color = 1
+rpclimitmethod = first
+
+# No additional subcollectives:
+collectives = mcollective
+main_collective = mcollective
+
+# Platform defaults:
+# These settings differ based on platform; the default config file created
+# by the package should include correct values or omit the setting if the
+# default value is fine.
+libdir = /usr/libexec/mcollective
+helptemplatedir = /etc/mcollective
+
+# Logging:
+logger_type = console
+loglevel = warn

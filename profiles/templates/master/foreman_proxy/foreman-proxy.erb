@@ -1,0 +1,4 @@
+Defaults:foreman-proxy !requiretty
+foreman-proxy   ALL = NOPASSWD: /usr/bin/puppet cert *
+foreman-proxy   ALL = NOPASSWD: /usr/bin/puppet kick *
+foreman-proxy   ALL = NOPASSWD: /usr/bin/mco puppet runonce *

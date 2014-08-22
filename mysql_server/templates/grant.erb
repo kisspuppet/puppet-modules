@@ -1,0 +1,6 @@
+# This file is managed by Puppet. DO NOT EDIT.
+<% if @grant_db_create -%>
+CREATE DATABASE IF NOT EXISTS <%= @grant_db_name %> <%= @grant_db_option %>;
+<% end -%>
+GRANT <%= @grant_db_privs %> ON <%= @grant_db_name %>.* TO '<%= @grant_db_user %>'@'<%= @grant_db_host %>' <% if @grant_db_password -%> IDENTIFIED BY '<%= @grant_db_password %>' <% end %>;
+FLUSH PRIVILEGES ;

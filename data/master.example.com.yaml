@@ -1,0 +1,2 @@
+---
+profiles::base::ntp_server: pool.ntp.org

@@ -1,0 +1,65 @@
+# /etc/mcollective/server.cfg
+# RabbitMQ connector settings:
+direct_addressing = 1
+connector = rabbitmq
+plugin.rabbitmq.vhost = /mcollective
+plugin.rabbitmq.pool.size = 1
+plugin.rabbitmq.pool.1.host = <%= @options['mq_uri'] %>
+plugin.rabbitmq.pool.1.port = 61613
+plugin.rabbitmq.pool.1.user = mcollective
+plugin.rabbitmq.pool.1.password = <%= @options['mcollective_password'] %>
+
+#plugin.rabbitmq.pool.2.host = rabbit2
+#plugin.rabbitmq.pool.2.port = 61613
+#plugin.rabbitmq.pool.2.user = mcollective
+#plugin.rabbitmq.pool.2.password = changeme
+
+# PSK plugin settings:
+plugin.psk = j9q8kx7fnuied9e
+
+# Facts, identity, and classes:
+identity = <%= @clientcert %>
+factsource = yaml
+plugin.yaml = /etc/mcollective/facts.yaml
+classesfile = /var/lib/puppet/state/classes.txt
+
+# No additional subcollectives:
+collectives = mcollective
+main_collective = mcollective
+
+# Registration:
+# We don't configure a listener, and only send these messages to keep the
+# Stomp connection alive. This will use the default "agentlist" registration
+# plugin.
+registerinterval = 600
+
+# Auditing (optional):
+# If you turn this on, you must arrange to rotate the log file it creates.
+rpcaudit = 1
+rpcauditprovider = logfile
+plugin.rpcaudit.logfile = /var/log/mcollective-audit.log
+
+# Authorization:
+# If you turn this on now, you won't be able to issue most MCollective
+# commands, although `mco ping` will work. You should deploy the
+# ActionPolicy plugin before uncommenting this; see "Deploy Plugins" below.
+
+# rpcauthorization = 1
+# rpcauthprovider = action_policy
+# plugin.actionpolicy.allow_unconfigured = 1
+
+# Logging:
+logger_type = file
+loglevel = info
+logfile = /var/log/mcollective.log
+keeplogs = 5
+max_log_size = 2097152
+logfacility = user
+
+# Platform defaults:
+# These settings differ based on platform; the default config file created by
+# the package should include correct values. If you are managing settings as
+# resources, you can ignore them, but with a template you'll have to account
+# for the differences.
+libdir = /usr/libexec/mcollective
+daemonize = 1

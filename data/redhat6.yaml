@@ -1,0 +1,10 @@
+---
+profiles::base::repos:
+  base:
+    baseurl: "http://yum.example.com/rhel6"
+  puppet:
+    baseurl: "http://yum.example.com/puppet-el6"
+  foreman:
+    baseurl: "http://yum.example.com/foreman-repo/foreman-el6"
+  rabbitmq:
+    baseurl: "http://yum.example.com/rabbitmq"

@@ -1,0 +1,186 @@
+{
+  "name": "puppetlabs-java_ks",
+  "version": "1.2.3",
+  "source": "https://github.com/puppetlabs/puppetlabs-java_ks.git",
+  "author": "puppetlabs",
+  "license": "ASL 2.0",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-java_ks",
+  "summary": "Manage arbitrary Java keystore files",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "11 SP1"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04"
+      ]
+    },
+    {
+      "operatingsystem": "Solaris",
+      "operatingsystemrelease": [
+        "10",
+        "11"
+      ]
+    },
+    {
+      "operatingsystem": "Windows",
+      "operatingsystemrelease": [
+        "Server 2003 R2",
+        "Server 2008 R2",
+        "Server 2012",
+        "Server 2012 R2",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "AIX",
+      "operatingsystemrelease": [
+        "5.3",
+        "6.1",
+        "7.1"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.2.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "dependencies": [
+
+  ],
+  "description": "Uses a combination of keytool and openssl to manage entries in a Java keystore.",
+  "types": [
+    {
+      "name": "java_ks",
+      "doc": "Manages entries in a java keystore.  Uses composite namevars to\naccomplish the same alias spread across multiple target keystores.",
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "Has three states, the obvious present and absent plus latest.  Latest\nwill compare the on disk MD5 fingerprint of the certificate and to that\nin keytool to determine if insync? returns true or false.  We redefine\ninsync? for this paramerter to accomplish this.\n\nValid values are `present`, `absent`, `latest`. "
+        }
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "The alias that is used to identify the entry in the keystore.  We\nare down casing it for you here because keytool will do so for you too.\n\n"
+        },
+        {
+          "name": "target",
+          "doc": "Destination file for the keystore.  We autorequire the parent\ndirectory for convenience.\n\n"
+        },
+        {
+          "name": "certificate",
+          "doc": "An already signed certificate that we can place in the keystore.  We\nautorequire the file for convenience.\n\n"
+        },
+        {
+          "name": "private_key",
+          "doc": "If you desire for an application to be a server and encrypt traffic\nyou will need a private key.  Private key entries in a keystore must be\naccompanied by a signed certificate for the keytool provider.\n\n"
+        },
+        {
+          "name": "chain",
+          "doc": "It has been found that some java applications do not properly send\nintermediary certificate authorities, in this case you can bundle them\nwith the server certificate using this chain parameter.\n\n"
+        },
+        {
+          "name": "password",
+          "doc": "The password used to protect the keystore.  If private keys are\nsubsequently also protected this password will be used to attempt\nunlocking...P.S. Let me know if you ever need a separate private key\npassword parameter...\n\n"
+        },
+        {
+          "name": "password_file",
+          "doc": "The path to a file containing the password used to protect the\nkeystore. This cannot be used together with :password.\n\n"
+        },
+        {
+          "name": "trustcacerts",
+          "doc": "When inputing certificate authorities into a keystore, they aren't\nby default trusted so if you are adding a CA you need to set this to true.\n\nValid values are `true`, `false`. "
+        },
+        {
+          "name": "path",
+          "doc": "The search path used for command (keytool, openssl) execution.\nPaths can be specified as an array or as a ':' separated list.\n\n"
+        }
+      ],
+      "providers": [
+        {
+          "name": "keytool",
+          "doc": "Uses a combination of openssl and keytool to manage Java keystores"
+        }
+      ]
+    }
+  ],
+  "checksums": {
+    "CHANGELOG.md": "209e4f30cd5350c0ae15feb6c0b7cb6b",
+    "Gemfile": "f7e8fcee10c394e91413596676b2fd56",
+    "LICENSE": "08a92c4b34dd9392acbcfec2ae2f27db",
+    "Modulefile": "d1e2d2c946def9c62942269744a247b6",
+    "README.md": "9f0bede24ce90fdfdfe507c14252198f",
+    "Rakefile": "0254db5d3fc38c67a2c160d7296a24f8",
+    "lib/puppet/provider/java_ks/keytool.rb": "8f57256caffef572eb95ebb0a4c98c04",
+    "lib/puppet/type/java_ks.rb": "7ae1ec87b55ee76a08b59aec25112493",
+    "spec/acceptance/basic_spec.rb": "7a6b5ce37872a02942069dd391d8c7a6",
+    "spec/acceptance/keystore_spec.rb": "9113ca9159d3a96ac47ca4d04e2e4af1",
+    "spec/acceptance/nodesets/centos-510-x64.yml": "eeac8e383077addbe5e3c415da92d907",
+    "spec/acceptance/nodesets/centos-59-x64.yml": "9b3091fc7d5e6d8f4cc930bafb758752",
+    "spec/acceptance/nodesets/centos-64-x64-pe.yml": "808743972893cc847556b826c27878fa",
+    "spec/acceptance/nodesets/centos-64-x64.yml": "bf73f492aa4599fd16fce652b4f315d4",
+    "spec/acceptance/nodesets/debian-607-x64.yml": "016094fb20069d20fa919dd17dcac61f",
+    "spec/acceptance/nodesets/debian-73-x64.yml": "d1b9217880a8f05bacd69edd01abe7a5",
+    "spec/acceptance/nodesets/default.yml": "bf73f492aa4599fd16fce652b4f315d4",
+    "spec/acceptance/nodesets/ubuntu-server-10044-x64.yml": "95514001860a1b4b75a3a7c3ead88648",
+    "spec/acceptance/nodesets/ubuntu-server-12042-x64.yml": "0f029bb250bd527e3ecc33e4a1bee86a",
+    "spec/acceptance/private_key_spec.rb": "b59ca90d64b3d8c542674f5968cb4383",
+    "spec/acceptance/truststore_spec.rb": "66ed567073eb0b42891dddebc1779504",
+    "spec/acceptance/unsupported_spec.rb": "8462fc2166acf954894db5dd4acf7de1",
+    "spec/fixtures/manifests/site.pp": "557d62b53640570f44592493ff083104",
+    "spec/hosts/default_spec.rb": "21cade893ce610f5d59ab79f7e5665e7",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+    "spec/spec_helper_acceptance.rb": "67d70a1e13f2274a9972e5d2024bf694",
+    "spec/system_helper_acceptance.rb": "30970456e8b46c1e99a547f7256b6563",
+    "spec/unit/puppet/provider/java_ks/keytool_spec.rb": "3f317e25780526da488e12add07b1652",
+    "spec/unit/puppet/type/java_ks_spec.rb": "f7128b9f08d8e8fd7f384233288c68cf"
+  }
+}

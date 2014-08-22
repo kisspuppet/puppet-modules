@@ -1,0 +1,6 @@
+---
+profiles::base::repos:
+  base:
+    baseurl: "http://yum.example.com/rhel5/Server"
+  puppet:
+    baseurl: "http://yum.example.com/puppet-el5"
